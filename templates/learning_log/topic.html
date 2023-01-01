@@ -1,0 +1,25 @@
+{% extends 'learning_log/base.html' %}
+
+{% block page_header %}
+    <h3>{{ topic }}</h3>
+{% endblock page_header %}
+
+{% block content %}
+    <div class="row mb-3">
+        <a class="btn btn-info" href="{% url 'learning_log:new_entry' topic.id%}">Add new entry | 添加新条目</a></div>
+
+    {% for entry in entries %}
+        <div class="card mb-3">
+            <h4 class="card-header">
+                {{ entry.date_added|date:'M d, Y H:i' }}
+                <a class="btn btn-primary mr-auto" href="{% url 'learning_log:edit_entry' entry.id %}">Edit entry | 编辑条目</a>
+            </h4>
+            <div class="card-body">
+                {{ entry.text|linebreaks }}
+            </div>
+        </div>
+    {% empty %}
+        <p>There are no entries for this topic | 这里还没有条目哦</p>
+    {% endfor %}
+
+{% endblock content %}

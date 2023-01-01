@@ -1,0 +1,14 @@
+{% extends 'learning_log/base.html' %}
+
+{% block page_header %}
+    <h3>Edit entry | 编辑条目:</h3>
+    <h4><a href="{% url 'learning_log:topic' topic.id %}">{{ topic }}</a></h4>
+{% endblock page_header %}
+
+{% block content %}
+    <form action="{% url 'learning_log:edit_entry' entry.id %}" method="post">
+        {% csrf_token %}
+        {{ from.as_p }}
+        <button name="submic">Save changes | 保存更改</button>
+    </form>
+{% endblock content %}

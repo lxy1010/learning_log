@@ -1,0 +1,14 @@
+{% extends "learning_log/base.html" %}
+
+
+{% block page_header %}
+    <!-- 定义 醒目的大标题文字  "jumbotron" 是个大框框儿! -->
+    <div class="jumbotron">
+        <h1 class="display-4">Let's start learning | 让我们开始学习吧</h1>
+
+        <p class="lead"><br>Start creating your own learning log. Whenever and wherever you are, you can create a new topic and add new entries to it.<br><br>
+            开始创建你自己的学习日志吧. 无论何时, 身处何处, 你都可以创建一个新的主题, 并且为它添加新的条目. <br></p>
+
+        <a class="btn btn-lg btn-primary" href="{% url 'registration:register' %}" role="button">Register | 注册 &raquo;</a>
+    </div>
+{% endblock page_header %}

@@ -1,0 +1,22 @@
+{% extends 'learning_log/base.html' %}
+
+{% block page_header %}
+    <h1>Topics | 主题</h1>
+{% endblock page_header %}
+
+{% block content %}
+    <!-- ul 用于显示列表 -->
+    <ul>
+        {% for topic in topics %}
+            <!-- li 用于显示每个条目 -->
+            <li><h3>
+                <a href="{% url 'learning_log:topic' topic.id %}">{{ topic }}</a>
+            </h3></li>
+        {% empty %}
+            <li><h3>No topics have been yet | 这里还没有主题哦</h3></li>
+        {% endfor %}
+    </ul>
+
+    <h3><a class="btn btn-info" href="{% url 'learning_log:new_topic' %}">Add | 添加</a></h3>
+
+{% endblock content %}

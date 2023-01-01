@@ -1,0 +1,86 @@
+{% load bootstrap4 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Learning Log|学习笔记</title>
+
+    {% bootstrap_css %}
+    {% bootstrap_javascript jquery="full" %}
+</head>
+
+<body>
+    <!-- <nav>元素表示页面开始的导航部分 -->
+    <nav class="navbar navbar-expand-md navbar-night bg-light mb-4 border">
+
+        <!-- 显示项目名 使用 navbar-brand 使项目更显眼 (人话: 导航栏项目名加粗) -->
+        <a class="navbar-brand" href="{% url 'learning_log:index' %}" >Learning Log | 首页</a>
+
+        <!-- 定义一个按钮 他将在无法完全显示导航栏时显示出来 这个按钮包含了所有的导航元素 (人话: 基本没啥用的玩意儿 害我打这么半天!) -->
+        <button class="navbar-toggler"
+                type="button"
+                data-toggle="collapse"
+                data-target="#navbarCollapse"
+                aria-controls="navbarCollapse"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon">...</span>
+        </button>
+
+        <!-- 定义一个块 在导航栏上显示其他信息 -->
+        <!-- tip: <div> (division 分隔) 将页面分割成多个区域 在 </div> 之前的东西都会受到影响 -->
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <!-- Topics -->
+            <!-- tip: "ml-auto" (margin-left-automatic 自动左边距) 将这一部分靠左 (同时还有 mr-auto (下面会用到) ) -->
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'learning_log:topics' %}">Topics | 主题</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                {% if user.is_authenticated %}
+                    <!-- welcome -->
+                    <li class="nav-item">
+                        <div class="mr-3"><span class="navbar-text">Welcome, {{ user.username }}.</span></div>
+                    </li>
+                    <!-- Log out -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration:logout' %}">Log Out | 退出登录</a>
+                    </li>
+                {% else %}
+                    <!-- Log in -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration:login' %}">Log In | 登录</a>
+                    </li>
+                    <!-- Registration -->
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'registration:register' %}">Register | 注册</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </nav>
+
+    <!-- <main> 用于定义 <body> 中最主体的部分  "container" 最简单的页面编组方式 -->
+    <main role="main" class="container">
+        <!-- "pb" 内边距  "mb" 外边距 -->
+        <div class="pb-2 mb-2 border-bottom">
+            <!-- page_header 块 用于显示标题 -->
+            {% block page_header %}{% endblock page_header %}
+        </div>
+        <div>
+            {% block content %}{% endblock content %}
+        </div>
+        <div class="fixed-bottom text-center">
+            <p>@Tridecal<br>https://github.com/lxy1010/leaning_log</p>
+        </div>
+    </main>
+
+    <!-- ahh! -->
+</body>
+
+</html>
+

@@ -1,0 +1,22 @@
+{% extends 'learning_log/base.html' %}
+{% load bootstrap4 %}
+
+
+{% block page_header %}
+    <h2>Log in to your account | 在这里登陆你的账户</h2>
+{% endblock page_header %}
+
+{% block content %}
+    <form class="from" method="post" action="{% url 'registration:login' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        {% buttons %}
+            <button class="btn btn-primary" name="submit">Log in | 登录</button>
+        {% endbuttons %}
+
+        <input type="hidden" name="next" value="{% url 'learning_log:index' %}" />
+    </form>
+
+    <a href="{% url 'registration:register' %}">Don't have an account yet? Register one | 还没有账户? 注册一个</a>
+
+{% endblock content %}

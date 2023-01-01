@@ -85,3 +85,7 @@ def edit_entry(request, entry_id):
 
     context = {'entry': entry, 'topic': topic, 'from': from_}
     return render(request, 'learning_log/edit_entry.html', context)
+
+
+def about(request):
+    return render(request, 'learning_log/about.html')
